@@ -107,10 +107,10 @@ namespace exercise.main
             return inv.GetProduct("FILB").Cost();
         }
 
-        public string Purchase(Basket basket)
+        public string Purchase(Basket basket, Isms receiptHandler)
         {
             //Get the receipt
-            string receipt = basket.Receipt();
+            string receipt = receiptHandler.Send(basket).Result;
             
             //Print it
             Console.WriteLine(receipt);

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace exercise.main
 {
-    public class Basket
+    public class Basket : Isms
     {
         public int size {  get; set; } //Size of basket
         public List<Product> products = new List<Product>(); //List of all 
 
         public Basket(Manager manager)
         {
-            this.size = manager.allowedBasketSize; 
+            this.size = manager.allowedBasketSize;
         }
 
         public int Search(string product)
@@ -171,6 +171,12 @@ namespace exercise.main
         public void Empty()
         {
             this.products.Clear();
+        }
+
+        public async Task<string> Send(Basket basket)
+        {
+            await Task.Delay(1);
+            return basket.Receipt();
         }
     }
 }

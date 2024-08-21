@@ -8,12 +8,20 @@ namespace exercise.main
 {
     public class Customer
     {
+        private Isms _receiptHandler;
         public Basket basket; //Basket containing all products the customer wants to buy
         public float wallet { get; set; } //Money that the customer can spend
         public Customer(Manager manager, float allowance)
         {
             this.basket = new Basket(manager);
             this.wallet = allowance;
+            this._receiptHandler = this.basket;
+        }
+        public Customer(Manager manager, float allowance, Isms receiptHandler)
+        {
+            this.basket = new Basket(manager);
+            this.wallet = allowance;
+            this._receiptHandler = receiptHandler;
         }
 
         public bool Add(Manager manager, string product, int amount = 1)
@@ -73,7 +81,7 @@ namespace exercise.main
             }
 
             //Ask the manager to finalize the purchase
-            return manager.Purchase(this.basket);
+            return manager.Purchase(this.basket, _receiptHandler);
         }
     }
 }
